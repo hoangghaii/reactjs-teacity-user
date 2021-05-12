@@ -1,0 +1,172 @@
+/* ================== Header ================= */
+.header {
+	display: flex;
+	justify-content: space-between;
+
+	background: linear-gradient(to top right, #f6f6f7, #fafcfc);
+	padding: 2rem 3rem;
+
+	width: calc(100% - 40rem);
+	position: fixed;
+	top: 0;
+	z-index: 9;
+}
+
+.search {
+	position: relative;
+
+	&__form {
+		position: relative;
+		width: 50rem;
+		height: 4.5rem;
+		background: transparent;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		border-radius: 30rem;
+		overflow: hidden;
+	}
+
+	&__input {
+		position: relative;
+
+		width: 90%;
+		height: 100%;
+		padding-left: 2rem;
+		font-family: $montserrat;
+		color: $color-font;
+		transition: all 0.25s;
+		border-radius: 30rem;
+		border: none;
+
+		&:focus {
+			border: none;
+			outline: none;
+			width: 100%;
+		}
+
+		&::-webkit-input-placeholder {
+			font-weight: 400;
+			color: $color-font;
+		}
+	}
+
+	&__btn {
+		position: absolute;
+		top: 50%;
+		right: 3rem;
+		transform: translateY(-50%);
+		height: 80%;
+		display: block;
+		width: 3.7rem;
+		cursor: pointer;
+
+		border: none;
+		border-radius: 50%;
+		background-color: transparent;
+
+		transition: all 0.25s;
+
+		&:focus {
+			outline: none;
+		}
+
+		i {
+			margin-top: 0.3rem;
+			font-size: 1.6rem;
+			font-weight: 400;
+			color: $color-grey-dark-3;
+			transition: all 0.25s;
+		}
+
+		&:hover {
+			background-color: $color-grey-light-2;
+			box-shadow: $shadow-light-2;
+		}
+
+		&:hover i {
+			color: $color-font;
+		}
+	}
+
+	&__input:focus + &__btn {
+		right: 1rem;
+	}
+
+	&__result {
+		display: flex;
+		flex-direction: column;
+
+		width: 85%;
+		margin: 0 auto;
+
+		background: rgba($color-white, 0.9);
+		border-radius: 1.5rem;
+		box-shadow: $shadow-dark-1;
+
+		position: absolute;
+		top: 5rem;
+		left: 50%;
+		transform: translateX(-50%);
+
+		&--item {
+			display: flex;
+			align-items: center;
+			margin: 1rem 1.5rem;
+		}
+
+		&--img {
+			width: 4.5rem;
+			height: 4.5rem;
+			border-radius: 1rem;
+			overflow: hidden;
+			box-shadow: 0 0.5rem 2rem rgba($color-black, 0.2);
+		}
+
+		&--product-detail {
+			display: flex;
+			flex-direction: column;
+			margin-left: 2rem;
+		}
+
+		&--product-name {
+			font-size: 1.7rem;
+			font-weight: 500;
+		}
+
+		&--product-price {
+			color: $color-red;
+			font-size: 1.4rem;
+		}
+	}
+
+	&__add {
+		margin-left: auto;
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		background-color: rgba($color-grey-light-1, 0.8);
+		box-shadow: $shadow-dark-3;
+
+		cursor: pointer;
+		transition: all 0.25s;
+
+		.icon-add {
+			color: $color-primary-dark;
+			font-size: 1.4rem;
+
+			margin-left: -0.2rem;
+		}
+
+		&:hover {
+			background-color: rgba($color-grey-light-1, 1);
+		}
+	}
+}

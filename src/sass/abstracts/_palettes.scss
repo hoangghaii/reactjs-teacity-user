@@ -1,0 +1,82 @@
+/* =================== Palette Color ================== */
+/*
+Palette 1
+#0e3854 - #067eed - #ff7c1f - #c1e6ff - #ffffff
+
+Palette 2
+#280b6f - #6730ec - #7984ee - #d2f6fc - #ffffff
+
+Palette 3
+#132743 - #db1d3b - #ff6187 - #f9e3a2 - #ffffff
+
+Palette 4
+#23374d - #0085ff - #85c3ff - #eeeeee - #ffffff
+
+Palette 5
+#1d0229 - #ba49f0 - #ea2121 - #ffd644 - #ffffff
+
+Palette 6
+#7d30fa - #f8b53a - #ffec41 - #f8425f - #2d4059
+
+Palette 7
+#0e3658 - #165081 - #fc3c3c - #29abf4 - #ffffff
+
+Palette 8
+#102754 - #453cc9 - #22aff1 - #d4e8ff - #ffffff
+
+Palette 9
+#474242 - #ee7070 - #fcea9a - #b8f0c8 - #d4e8ff
+
+Palette 10
+#143959 - #1f7396 - #27d3a8 - #f8e7ae - #ffffff
+*/
+
+// https://mycolor.space/
+// https://coolors.co/
+// https://uigradients.com/
+// https://noeldelgado.github.io/shadowlord/
+// https://colordesigner.io/
+// https://webgradients.com/
+
+/* =================== Palette Font ================== */
+
+// ---------------- Sans-Serif ---------------- //
+
+//  Montserrat  //
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+//  Open Sans  //
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+//  Raleway  //
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+// Inter //
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+// Work Sans //
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap");
+// Libre Franklin //
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800&display=swap");
+
+$montserrat: "Montserrat", sans-serif;
+$opensans: "Open Sans", sans-serif;
+$raleway: "Raleway", sans-serif;
+$inter: "Inter", sans-serif;
+$workSans: "Work Sans", sans-serif;
+$libreFranklin: "Libre Franklin", sans-serif;
+
+// ------------------ Serif ------------------ //
+
+// Crimson Text //
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+// Neuton //
+@import url("https://fonts.googleapis.com/css2?family=Neuton:ital,wght@0,400;0,700;1,400&display=swap");
+// Source Serif Pro //
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap");
+// Roboto Slab //
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap");
+// Lora //
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap");
+
+$crimsonText: "Crimson Text", serif;
+$neuton: "Neuton", serif;
+$sourceSerif: "Source Serif Pro", serif;
+$robotoSlab: "Roboto Slab", serif;
+$lora: "Lora", serif;

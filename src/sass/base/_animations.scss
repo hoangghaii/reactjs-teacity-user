@@ -1,0 +1,74 @@
+/* ================ Animations =============== */
+.animation-blur {
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+
+		background-color: currentColor;
+
+		animation: blur 1.5s infinite;
+	}
+
+	&:hover {
+		&::after {
+			z-index: -1;
+			animation: none;
+		}
+	}
+
+	@keyframes blur {
+		from {
+			transform: scale(0.5, 0.5);
+			opacity: 0.5;
+			z-index: -1;
+		}
+
+		to {
+			transform: scale(2.5, 2.5);
+			opacity: 0;
+			z-index: 1;
+		}
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.add-cart-animation {
+	animation: cartAnimation 0.5s ease;
+
+	@keyframes cartAnimation {
+		0% {
+			width: 0.8rem;
+			height: 0.8rem;
+		}
+
+		50% {
+			width: 1.2rem;
+			height: 1.2rem;
+		}
+
+		100% {
+			width: 0.8rem;
+			height: 0.8rem;
+		}
+	}
+}

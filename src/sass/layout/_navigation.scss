@@ -1,0 +1,41 @@
+/* ================ Navigation =============== */
+
+.navigation {
+	&__list {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		margin: 0.8rem 0;
+		width: 3.6rem;
+		height: 3.6rem;
+
+		background-color: $color-sidebar-light;
+		border-radius: 1rem;
+		cursor: pointer;
+
+		transition: all 0.25s;
+
+		i {
+			font-size: 1.5rem;
+			color: $color-font;
+		}
+
+		&:hover,
+		&.active {
+			background-color: $color-primary-light;
+			box-shadow: 0 0.5rem 2rem rgba($color-primary-dark, 0.3);
+		}
+
+		&:hover i,
+		&.active i {
+			color: $color-white;
+		}
+	}
+}

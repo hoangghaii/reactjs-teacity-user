@@ -1,0 +1,41 @@
+/* ================== Toast ================= */
+.toast {
+	&-content {
+		width: 31rem;
+	}
+
+	&-text {
+		display: inline-block;
+		margin-left: 2rem;
+		font-size: 1.5rem;
+	}
+
+	&-icon {
+		font-size: 1.8rem;
+	}
+}
+
+.Toastify__toast-container {
+	width: max-content !important;
+}
+
+.Toastify__toast--info {
+	background: linear-gradient(to right, #2193b0, #6dd5ed);
+}
+
+.Toastify__toast--success {
+	background: linear-gradient(to right, #11ffbd, #aaffa9);
+}
+
+.Toastify__toast--warning {
+	background: linear-gradient(to right, #f7b731, #fed330);
+}
+
+.Toastify__toast--error {
+	background: #e74c3c !important;
+}
+
+.Toastify__close-button {
+	margin-left: 10px;
+	align-self: center !important;
+}

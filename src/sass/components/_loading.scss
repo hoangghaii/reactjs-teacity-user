@@ -1,0 +1,16 @@
+/* =================== Loading ================== */
+.preloader-body {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 99999999;
+	background: $color-white;
+	top: 0;
+	left: 0;
+}
+
+.preloader {
+	position: absolute;
+	left: 49.5%;
+	top: 46%;
+}

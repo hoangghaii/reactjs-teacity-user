@@ -1,0 +1,52 @@
+/* =================== Tooltip ================== */
+.tooltip {
+	position: relative;
+
+	&__text {
+		position: absolute;
+
+		font-size: 1.2rem;
+		color: $color-grey-light-1;
+		text-align: center;
+
+		width: 12rem;
+		visibility: hidden;
+		background-color: rgba($color-grey-light-4, 1);
+		border-radius: 6px;
+		padding: 5px 0;
+
+		z-index: 10;
+		opacity: 0;
+		transition: opacity 0.3s;
+		transition: all 0.25s;
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: -12px;
+			transform: translateY(-50%);
+
+			border-width: 7px;
+			border-style: solid;
+			border-color: transparent rgba($color-grey-light-4, 0.7) transparent
+				transparent;
+		}
+	}
+
+	&:hover &__text {
+		visibility: visible;
+		opacity: 1;
+		z-index: 10;
+	}
+
+	&--right {
+		top: 50%;
+		left: 315%;
+		transform: translateY(-50%);
+	}
+
+	&:hover &--right {
+		left: 115%;
+	}
+}

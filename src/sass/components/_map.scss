@@ -1,0 +1,14 @@
+/* ================= Map ================= */
+.map {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: $color-white;
+
+	&-container {
+		height: calc(100vh - (14rem));
+		width: 100%;
+		overflow: hidden;
+		box-shadow: $shadow-dark-2;
+	}
+}

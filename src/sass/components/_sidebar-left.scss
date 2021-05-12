@@ -1,0 +1,57 @@
+/* =================== SideBar Left ================== */
+.sidebar-left {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	background-color: rgba($color-sidebar, 0.3);
+	padding: 3rem 0;
+}
+
+.logo-box {
+	width: 7rem;
+
+	margin-bottom: 3rem;
+
+	border-radius: 50%;
+}
+
+.logo {
+	border-radius: 50%;
+}
+
+.full-screen {
+	margin-top: auto;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+
+	width: 3.6rem;
+	height: 3.6rem;
+
+	background-color: rgba($color-grey-dark-3, 0.4);
+	box-shadow: $shadow-dark-3;
+	border-radius: 1rem;
+	cursor: pointer;
+
+	transition: all 0.25s;
+
+	&:hover,
+	&.active {
+		background-color: $color-primary-light;
+		box-shadow: 0 0.5rem 2rem rgba($color-primary-dark, 0.3);
+	}
+
+	i {
+		font-size: 1.5rem;
+		color: $color-font;
+	}
+
+	&:hover i,
+	&.active i {
+		color: $color-white;
+	}
+}
