@@ -8,8 +8,17 @@ function ProductItem(props) {
 	const { detailProduct, productInCart } = props;
 	const dispatch = useDispatch();
 
+	let sizeProduct = "";
+	let css = "product__size-item";
+
+	const handleChooseSize = (size) => {
+		sizeProduct = size;
+		css += " choose";
+	};
+
 	const handleAddCart = () => {
-		addToCart(dispatch, productInCart, detailProduct);
+		const product = { ...detailProduct, size: sizeProduct };
+		addToCart(dispatch, productInCart, product);
 	};
 
 	return (
@@ -30,11 +39,43 @@ function ProductItem(props) {
 			<div className="product__card--back">
 				<span className="product__heading"> {detailProduct.name} </span>
 				<p className="product__desc">{detailProduct.desc}</p>
-				<div className="product__cta">
+				<div className="product__detail">
 					<span className="product__price">
 						Price: <b>{formatCurrency(detailProduct.price)}</b>
 					</span>
-					<span className="btn-add" onClick={handleAddCart} />
+
+					<div className="product__cta">
+						<div className="product__size">
+							<span
+								className={css}
+								onClick={() => {
+									handleChooseSize("S");
+								}}
+							>
+								S
+							</span>
+							<span
+								className="product__size-item"
+								onClick={() => {
+									handleChooseSize("M");
+								}}
+							>
+								M
+							</span>
+							<span
+								className="product__size-item"
+								onClick={() => {
+									handleChooseSize("L");
+								}}
+							>
+								L
+							</span>
+						</div>
+
+						<span className="btn-add" onClick={handleAddCart}>
+							<i className="far fa-cart-plus" />
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>

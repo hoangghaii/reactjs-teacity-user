@@ -7,8 +7,11 @@ export const addToCart = (dispatch, productList, productToAdd) => {
 		image: productToAdd.image,
 		name: productToAdd.name,
 		quantity: 1,
+		size: productToAdd.size,
 		price: productToAdd.price,
 	});
+
+	console.log(productToAdd);
 
 	if (productList.length === 0) {
 		dispatch(action);

@@ -9,14 +9,14 @@
 	}
 
 	&__item {
-		margin: 0 1rem 2rem;
+		margin: 0 2rem 2rem;
 	}
 
 	&__card {
 		perspective: 1000px;
 		position: relative;
-		width: 22rem;
-		height: 30rem;
+		width: 25rem;
+		height: 32rem;
 
 		&--front,
 		&--back {
@@ -70,7 +70,7 @@
 		}
 
 		&--heading {
-			font-size: 1.5rem;
+			font-size: 1.6rem;
 			font-weight: 600;
 			text-transform: uppercase;
 			color: $color-primary-dark;
@@ -118,7 +118,7 @@
 
 	&__heading {
 		color: $color-heading;
-		font-size: 1.45rem;
+		font-size: 1.8rem;
 		font-weight: 600;
 		text-transform: uppercase;
 
@@ -126,9 +126,62 @@
 	}
 
 	&__desc {
-		font-size: 1.3rem;
+		font-size: 1.6rem;
 		color: rgba($color-font, 0.6);
 		margin-bottom: 1rem;
+	}
+
+	&__detail {
+		display: flex;
+		flex-direction: column;
+		margin-top: auto;
+
+		&-item {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
+
+	&__size {
+		width: 55%;
+		color: $color-font;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&-item {
+			font-size: 1.3rem;
+			font-weight: 500;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 2.6rem;
+			height: 2.6rem;
+			background: rgba($color-grey-light-4, 0.6);
+			border-radius: 50%;
+			color: $color-white;
+			cursor: pointer;
+			transition: all 0.25s;
+
+			&:hover:first-child,
+			&:first-child.choose,
+			&:first-child:focus {
+				background: #00cec9;
+			}
+
+			&:hover:last-child,
+			&:last-child.choose,
+			&:last-child:focus {
+				background: #0984e3;
+			}
+
+			&:hover:nth-child(2),
+			&:nth-child(2).choose,
+			:nth-child(2):focus {
+				background: #6c5ce7;
+			}
+		}
 	}
 
 	&__cta {
@@ -136,7 +189,7 @@
 		justify-content: space-between;
 		align-items: center;
 
-		margin-top: auto;
+		margin-top: 1rem;
 
 		.btn-add {
 			margin-right: 1rem;
@@ -144,12 +197,12 @@
 	}
 
 	&__price {
-		font-size: 1.3rem;
+		font-size: 1.5rem;
 		color: rgba($color-font, 0.7);
-		margin-top: 0.5rem;
 
 		b {
-			font-size: 1.4rem;
+			font-size: 1.55rem;
+			font-weight: 600;
 			color: $color-red;
 		}
 	}

@@ -19,12 +19,8 @@ function CartDetailList(props) {
 				</ul>
 			) : (
 				<div className="cart-detail__empty">
-					<h5 className="cart-detail__empty-title">
-						Có vẻ bạn chưa tìm được đồ uống mình muốn
-					</h5>
 					<span className="cart-detail__empty-text">
-						Đừng lo, còn rất nhiều loại đồ uống đang chờ bạn khám
-						phá 💪💪💪
+						Nothing to show
 					</span>
 				</div>
 			)}

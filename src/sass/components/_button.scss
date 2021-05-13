@@ -68,45 +68,30 @@
 
 	&-add {
 		display: block;
-		width: 3rem;
-		height: 3rem;
-		background-color: $color-grey-dark-2;
+		width: 3.5rem;
+		height: 3.5rem;
+		background-color: rgba($color-green, 0.7);
 		border-radius: 50%;
-
 		cursor: pointer;
-
 		position: relative;
+		transition: all 0.25s;
 
-		&::before,
-		&::after {
-			content: "";
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
+		i {
+			color: $color-white;
+			display: flex;
+			justify-content: center;
+			margin-left: -0.3rem;
+			line-height: 3.5rem;
 			transition: all 0.25s;
 		}
 
-		&::before {
-			width: 50%;
-			height: 0.2rem;
-			background-color: $color-white;
-		}
-
-		&::after {
-			width: 0.2rem;
-			height: 50%;
-			background-color: $color-white;
-		}
-
 		&:hover {
-			&::before {
-				width: 60%;
-			}
+			border: 1px solid rgba($color-green, 0.7);
+			background-color: transparent;
+		}
 
-			&::after {
-				height: 60%;
-			}
+		&:hover i {
+			color: $color-primary-dark;
 		}
 	}
 
