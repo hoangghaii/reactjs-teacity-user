@@ -2,13 +2,14 @@ import { Fragment, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import MainRoute from "./components/hoc/main-route/main-route";
-import PrivateRoute from "./components/hoc/private-route/private-route";
-import Loading from "./components/loading/loading";
-import "./sass/main.scss";
+import "./assets/sass/main.scss";
 
-const Dashboard = lazy(() => import("./components/user/dashboard"));
-const Checkout = lazy(() => import("./components/user/checkout/checkout"));
+import Loading from "./components/loading/loading";
+import MainRoute from "./hoc/main-route/main-route";
+import PrivateRoute from "./hoc/private-route/private-route";
+
+const Dashboard = lazy(() => import("./containers/dashboard"));
+const Checkout = lazy(() => import("./containers/checkout/checkout"));
 
 function App() {
 	return (

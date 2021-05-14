@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { addCart } from "../redux/productSlice";
+import { addCart } from "../store/slices/productSlice";
 
 export const addToCart = (dispatch, productList, productToAdd) => {
 	const action = addCart({
