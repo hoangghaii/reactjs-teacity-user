@@ -6,14 +6,13 @@ import { formatCurrency } from "../../../../../../common/common";
 
 function ProductItem(props) {
 	const { detailProduct, productInCart } = props;
+
 	const dispatch = useDispatch();
 
-	let sizeProduct = "";
-	let css = "product__size-item";
+	let sizeProduct = "S";
 
 	const handleChooseSize = (size) => {
 		sizeProduct = size;
-		css += " choose";
 	};
 
 	const handleAddCart = () => {
@@ -46,30 +45,54 @@ function ProductItem(props) {
 
 					<div className="product__cta">
 						<div className="product__size">
-							<span
-								className={css}
+							<label
+								htmlFor={detailProduct.id + "sizeS"}
+								className="product__size-item"
 								onClick={() => {
 									handleChooseSize("S");
 								}}
 							>
-								S
-							</span>
-							<span
+								<input
+									type="radio"
+									id={detailProduct.id + "sizeS"}
+									name={detailProduct.id + "size"}
+									defaultValue="S"
+									defaultChecked
+								/>
+								<span>S</span>
+							</label>
+
+							<label
+								htmlFor={detailProduct.id + "sizeM"}
 								className="product__size-item"
 								onClick={() => {
 									handleChooseSize("M");
 								}}
 							>
-								M
-							</span>
-							<span
+								<input
+									type="radio"
+									id={detailProduct.id + "sizeM"}
+									name={detailProduct.id + "size"}
+									defaultValue="M"
+								/>
+								<span>M</span>
+							</label>
+
+							<label
+								htmlFor={detailProduct.id + "sizeL"}
 								className="product__size-item"
 								onClick={() => {
 									handleChooseSize("L");
 								}}
 							>
-								L
-							</span>
+								<input
+									type="radio"
+									id={detailProduct.id + "sizeL"}
+									name={detailProduct.id + "size"}
+									defaultValue="L"
+								/>
+								<span>L</span>
+							</label>
 						</div>
 
 						<span className="btn-add" onClick={handleAddCart}>
