@@ -11,8 +11,6 @@ export const addToCart = (dispatch, productList, productToAdd) => {
 		price: productToAdd.price,
 	});
 
-	console.log(productToAdd);
-
 	if (productList.length === 0) {
 		dispatch(action);
 
