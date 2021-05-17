@@ -22,7 +22,7 @@ function CheckoutRight(props) {
 			vat: formatCurrency(vat),
 			total: formatCurrency(subTotal + vat),
 		};
-		console.log(mailData);
+
 		emailjs
 			.send(
 				process.env.REACT_APP_MAIL_SERVICE_ID,
