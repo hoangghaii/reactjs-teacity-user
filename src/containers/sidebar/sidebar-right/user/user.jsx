@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import SocialButton from "../../../../hoc/social-button/social-button";
 import StorageKey from "../../../../constants/storage-keys";
+import UserAvatar from "../../../../assets/images/woman.png";
+
 function User(props) {
 	const facebookAppId = process.env.REACT_APP_FACEBOOK_APP_ID;
 
@@ -53,12 +55,7 @@ function User(props) {
 			<div className="user-box">
 				<div className="user__icon-box">
 					<img
-						src={
-							userData
-								? userData.profilePicURL
-								: process.env.PUBLIC_URL +
-								  "/assets/images/woman.png"
-						}
+						src={userData ? userData.profilePicURL : UserAvatar}
 						alt="User Icon"
 						title="User Icon"
 						className="user__icon"
