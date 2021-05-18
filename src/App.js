@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./assets/sass/main.scss";
-
 import Loading from "./components/loading/loading";
 import MainRoute from "./hoc/main-route/main-route";
 import PrivateRoute from "./hoc/private-route/private-route";

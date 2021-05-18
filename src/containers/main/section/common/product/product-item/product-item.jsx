@@ -28,7 +28,6 @@ function ProductItem(props) {
 						src={detailProduct.image}
 						alt="Product"
 						className="product__img"
-						style={{ objectFit: "contain" }}
 					/>
 				</div>
 				<span className="product__card--heading">

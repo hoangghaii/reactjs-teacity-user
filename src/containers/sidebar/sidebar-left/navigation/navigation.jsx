@@ -8,14 +8,13 @@ function Navigation(props) {
 				<div className="tooltip">
 					<NavLink
 						exact
-						to="/home"
+						to="/"
 						activeClassName="active"
 						className="navigation__item"
 						title="Home"
 					>
 						<i className="fal fa-home"></i>
 					</NavLink>
-					<span className="tooltip__text tooltip--right">Home</span>
 				</div>
 
 				<div className="tooltip">
@@ -28,9 +27,6 @@ function Navigation(props) {
 					>
 						<i className="fal fa-mug-tea" />
 					</NavLink>
-					<span className="tooltip__text tooltip--right">
-						Milk Tea
-					</span>
 				</div>
 
 				<div className="tooltip">
@@ -43,9 +39,6 @@ function Navigation(props) {
 					>
 						<i className="fal fa-apple-alt" />
 					</NavLink>
-					<span className="tooltip__text tooltip--right">
-						Fruit Tea
-					</span>
 				</div>
 
 				<div className="tooltip">
@@ -58,9 +51,6 @@ function Navigation(props) {
 					>
 						<i className="fal fa-cookie-bite" />
 					</NavLink>
-					<span className="tooltip__text tooltip--right">
-						Cookie Blended
-					</span>
 				</div>
 
 				<div className="tooltip">
@@ -73,9 +63,6 @@ function Navigation(props) {
 					>
 						<i className="fal fa-map-marker-alt" />
 					</NavLink>
-					<span className="tooltip__text tooltip--right">
-						Location
-					</span>
 				</div>
 			</ul>
 		</nav>

@@ -11,7 +11,7 @@ function CheckoutLeft(props) {
 
 	return (
 		<div className="checkout__container--left">
-			<Link to="/home" title="Home">
+			<Link to="/" title="Home">
 				<div className="logo-box checkout-logo" title="Logo">
 					<img src={Logo} alt="Logo" className="logo " />
 				</div>

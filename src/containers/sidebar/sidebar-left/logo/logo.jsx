@@ -4,7 +4,7 @@ import logo from "../../../../assets/images/logo.png";
 
 function Logo(props) {
 	return (
-		<Link to="/home" title="Home">
+		<Link to="/" title="Home">
 			<div className="logo-box" title="Logo">
 				<img src={logo} alt="Logo" className="logo" />
 			</div>
