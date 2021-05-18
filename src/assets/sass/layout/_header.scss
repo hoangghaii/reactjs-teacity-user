@@ -3,7 +3,8 @@
 	display: flex;
 	justify-content: space-between;
 
-	background: linear-gradient(to top right, #f6f6f7, #fafcfc);
+	background: linear-gradient(to top right, #fdfdfd, #fbf8f8);
+	box-shadow: $shadow;
 	padding: 2rem 3rem;
 
 	width: calc(100% - 40rem);
