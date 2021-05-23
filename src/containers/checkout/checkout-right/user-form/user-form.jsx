@@ -42,7 +42,7 @@ function UserForm(props) {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors, isDirty, isValid },
+		formState: { errors, isSubmitting },
 	} = useForm({
 		reValidateMode: "onChange",
 		defaultValues: {
@@ -130,7 +130,7 @@ function UserForm(props) {
 			<button
 				className="btn form__submit"
 				type="submit"
-				disabled={isDirty || isValid}
+				disabled={isSubmitting}
 			>
 				Pay {formatCurrency(subTotal + vat)}
 			</button>
