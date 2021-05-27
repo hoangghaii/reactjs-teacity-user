@@ -13,7 +13,7 @@ function MilkTea(props) {
 		(product) => product.popular === "Credit"
 	);
 
-	const bannerList = [Banner4, Banner5, Banner6];
+	const bannerList = [Banner4, Banner5, Banner6, Banner6];
 
 	return (
 		<section>

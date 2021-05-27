@@ -13,7 +13,7 @@ function FruitTea(props) {
 		(product) => product.popular === "Invoice"
 	);
 
-	const bannerList = [Banner7, Banner8, Banner9];
+	const bannerList = [Banner7, Banner8, Banner9, Banner9];
 
 	return (
 		<section>

@@ -13,7 +13,7 @@ function Cookie(props) {
 		(product) => product.popular === "Debit"
 	);
 
-	const bannerList = [Banner10, Banner10, Banner10];
+	const bannerList = [Banner10, Banner10, Banner10, Banner10];
 
 	return (
 		<section>
