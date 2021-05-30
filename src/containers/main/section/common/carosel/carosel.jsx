@@ -24,5 +24,3 @@ Carosel.propTypes = {
 };
 
 export default Carosel;
-
-//16:13
