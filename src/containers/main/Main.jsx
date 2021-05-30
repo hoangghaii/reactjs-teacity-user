@@ -21,16 +21,23 @@ function Main(props) {
 		status: undefined,
 	});
 
-	useEffect(() => {
-		(async () => {
-			const dataRes = await productApi.getAll();
-
-			setDataRespond({
-				loading: false,
-				data: dataRes.data,
-				status: dataRes.status,
+	const getProductList = async () => {
+		return await productApi
+			.getAll()
+			.then((dataRes) =>
+				setDataRespond({
+					loading: false,
+					data: dataRes.data,
+					status: dataRes.status,
+				})
+			)
+			.catch((error) => {
+				console.log(error);
 			});
-		})();
+	};
+
+	useEffect(() => {
+		getProductList();
 	}, []);
 
 	let content = null;
