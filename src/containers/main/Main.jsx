@@ -1,16 +1,14 @@
 import PropTypes from "prop-types";
 import React, { Fragment, lazy, Suspense, useEffect, useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import productApi from "../../apis/productApi";
-import Loading from "../../components/loading/loading";
-import PageNotFound from "../../components/pagenotfound/pagenotfound";
 import Header from "../../components/header/header";
+import Loading from "../../components/loading/loading";
+import routes from "../../routes";
 
-const Home = lazy(() => import("./section/home/Home"));
-const Cookie = lazy(() => import("./section/cookie/cookie"));
-const FruitTea = lazy(() => import("./section/fruit-tea/fruit-tea"));
-const Location = lazy(() => import("./section/location/location"));
-const MilkTea = lazy(() => import("./section/milk-tea/milk-tea"));
+const PageNotFound = lazy(() =>
+	import("../../components/pagenotfound/pagenotfound")
+);
 
 function Main(props) {
 	const { productInCart } = props;
@@ -58,44 +56,22 @@ function Main(props) {
 
 				<Suspense fallback={<Loading />}>
 					<Switch>
-						<Route path="home">
-							<Home
-								productList={productList}
-								productInCart={productInCart}
-							/>
-						</Route>
-
-						<Route path="/milk-tea">
-							<MilkTea
-								productList={productList}
-								productInCart={productInCart}
-							/>
-						</Route>
-
-						<Route path="/fruit-tea">
-							<FruitTea
-								productList={productList}
-								productInCart={productInCart}
-							/>
-						</Route>
-
-						<Route path="/cookie-blended">
-							<Cookie
-								productList={productList}
-								productInCart={productInCart}
-							/>
-						</Route>
-
-						<Route path="/location" component={Location} />
-
-						<Route path="/">
-							<Home
-								productList={productList}
-								productInCart={productInCart}
-							/>
-						</Route>
-
-						<Redirect from="/" to="/home" />
+						{routes.map((route, index) => {
+							return (
+								route.component && (
+									<Route
+										path={route.path}
+										key={index}
+										name={route.name}
+									>
+										<route.component
+											productList={productList}
+											productInCart={productInCart}
+										/>
+									</Route>
+								)
+							);
+						})}
 
 						<Route component={PageNotFound} />
 					</Switch>
