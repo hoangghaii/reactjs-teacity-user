@@ -12,6 +12,7 @@ function User(props) {
 	);
 
 	const handleLoginSuccess = (res) => {
+		console.log(res);
 		setUserData(res._profile);
 
 		localStorage.removeItem("fblst_889966328526270");
