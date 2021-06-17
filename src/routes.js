@@ -14,7 +14,7 @@ const MilkTea = lazy(() =>
 
 const routes = [
 	{ path: "/home", name: "Home", component: Home },
-	{ path: "/cookie", name: "Cookie", component: Cookie },
+	{ path: "/cookie-blended", name: "Cookie", component: Cookie },
 	{ path: "/fruit-tea", name: "FruitTea", component: FruitTea },
 	{ path: "/location", name: "Location", component: Location },
 	{ path: "/milk-tea", name: "MilkTea", component: MilkTea },
