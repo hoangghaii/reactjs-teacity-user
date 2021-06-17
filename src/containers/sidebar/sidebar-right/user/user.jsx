@@ -77,6 +77,7 @@ function User(props) {
 							provider="facebook"
 							appId={facebookAppId}
 							key={"facebook"}
+							scope="user_location"
 							onLoginSuccess={handleLoginSuccess}
 							onLoginFailure={handleLoginFailure}
 							onLogoutSuccess={handleLogoutSuccess}
