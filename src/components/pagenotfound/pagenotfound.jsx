@@ -18,7 +18,7 @@ function PageNotFound(props) {
 						chữa!
 					</p>
 
-					<Link exact to="/home" className="btn btn-error">
+					<Link to="/home" className="btn btn-error">
 						Về trang chủ
 					</Link>
 				</div>

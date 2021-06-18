@@ -11,7 +11,7 @@ function PrivateRoute({ component: Component, ...rest }) {
 
 	return (
 		<Route
-			exact
+			exact={true}
 			{...rest}
 			render={(props) =>
 				isLoggedIn ? (

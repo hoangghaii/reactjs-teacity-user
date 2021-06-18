@@ -4,7 +4,7 @@ import { Route } from "react-router";
 function MainRoute({ component: Component, ...rest }) {
 	return (
 		<Route
-			exact
+			exact={true}
 			{...rest}
 			render={(matchProps) => <Component {...matchProps} />}
 		/>

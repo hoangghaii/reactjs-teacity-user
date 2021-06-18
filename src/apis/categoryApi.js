@@ -1,8 +1,8 @@
 import axiosClient from "./axiosClient";
 
-const productApi = {
+const categoryApi = {
 	async getAll() {
-		const url = "/api/product";
+		const url = "/api/category";
 
 		try {
 			return await axiosClient.get(url);
@@ -19,16 +19,6 @@ const productApi = {
 			return error;
 		}
 	},
-
-	async getWithPaginate(name) {
-		const params = "_page=2&_limit=10";
-
-		try {
-			return await axiosClient.get({ params });
-		} catch (error) {
-			return error;
-		}
-	},
 };
 
-export default productApi;
+export default categoryApi;

@@ -5,6 +5,8 @@ import productApi from "../../apis/productApi";
 import Header from "../../components/header/header";
 import Loading from "../../components/loading/loading";
 import routes from "../../routes";
+import categoryApi from "./../../apis/categoryApi";
+import ProductLayout from "./section/product-layout/ProductLayout";
 
 const PageNotFound = lazy(() =>
 	import("../../components/pagenotfound/pagenotfound")
@@ -19,22 +21,42 @@ function Main(props) {
 		status: undefined,
 	});
 
+	const [categories, setCategories] = useState({
+		loading: true,
+		data: null,
+		status: undefined,
+	});
+
+	const getAllCategories = async () => {
+		return await categoryApi
+			.getAll()
+			.then((res) => {
+				setCategories({
+					loading: false,
+					data: res.data.data,
+					status: res.status,
+				});
+			})
+			.catch((err) => console.log(err));
+	};
+
 	const getProductList = async () => {
 		return await productApi
 			.getAll()
-			.then((dataRes) =>
+			.then((dataRes) => {
 				setDataRespond({
 					loading: false,
 					data: dataRes.data,
 					status: dataRes.status,
-				})
-			)
+				});
+			})
 			.catch((error) => {
 				console.log(error);
 			});
 	};
 
 	useEffect(() => {
+		getAllCategories();
 		getProductList();
 	}, []);
 
@@ -60,9 +82,9 @@ function Main(props) {
 							return (
 								route.component && (
 									<Route
+										exact={true}
 										path={route.path}
 										key={index}
-										name={route.name}
 									>
 										<route.component
 											productList={productList}
@@ -72,6 +94,26 @@ function Main(props) {
 								)
 							);
 						})}
+
+						{categories.data &&
+							categories.data.map((category, index) => {
+								return (
+									<Route
+										key={index}
+										exact={true}
+										path={`/${category.name
+											.toLowerCase()
+											.split(" ")
+											.join("-")}`}
+									>
+										<ProductLayout
+											categoriesList={categories.data}
+											productList={productList}
+											productInCart={productInCart}
+										/>
+									</Route>
+								);
+							})}
 
 						<Route component={PageNotFound} />
 					</Switch>

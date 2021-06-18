@@ -1,13 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import categoryApi from "./../../../../apis/categoryApi";
 
 function Navigation(props) {
+	const [dataRes, setDataRes] = useState({
+		loading: true,
+		data: null,
+		status: null,
+	});
+
+	const getAllCategories = async () => {
+		return await categoryApi
+			.getAll()
+			.then((res) => {
+				setDataRes({
+					loading: false,
+					data: res.data.data,
+					status: res.status,
+				});
+			})
+			.catch((err) => console.log(err));
+	};
+
+	useEffect(() => {
+		getAllCategories();
+	}, []);
+
+	let categoriesLink = null;
+	if (dataRes.loading) {
+		categoriesLink = null;
+	} else if (dataRes.status !== 200) {
+		categoriesLink = null;
+	} else if (dataRes.data) {
+		const categories = dataRes.data;
+
+		categoriesLink = categories.map((category) => (
+			<div key={category.id} className="tooltip">
+				<NavLink
+					exact={true}
+					to={`/${category.name.toLowerCase().split(" ").join("-")}`}
+					activeClassName="active"
+					className="navigation__item"
+					title={category.name}
+				>
+					<i className={`fal ${category.icon}`} />
+				</NavLink>
+			</div>
+		));
+	}
+
 	return (
 		<nav className="navigation">
 			<ul className="navigation__list">
 				<div className="tooltip">
 					<NavLink
-						exact
+						exact={true}
 						to="/"
 						activeClassName="active"
 						className="navigation__item"
@@ -17,45 +64,11 @@ function Navigation(props) {
 					</NavLink>
 				</div>
 
-				<div className="tooltip">
-					<NavLink
-						exact
-						to="/milk-tea"
-						activeClassName="active"
-						className="navigation__item"
-						title="Milk Tea"
-					>
-						<i className="fal fa-mug-tea" />
-					</NavLink>
-				</div>
+				{categoriesLink}
 
 				<div className="tooltip">
 					<NavLink
-						exact
-						to="/fruit-tea"
-						activeClassName="active"
-						className="navigation__item "
-						title="Fruit Tea"
-					>
-						<i className="fal fa-apple-alt" />
-					</NavLink>
-				</div>
-
-				<div className="tooltip">
-					<NavLink
-						exact
-						to="/cookie-blended"
-						activeClassName="active"
-						className="navigation__item"
-						title="Cookie Blended"
-					>
-						<i className="fal fa-cookie-bite" />
-					</NavLink>
-				</div>
-
-				<div className="tooltip">
-					<NavLink
-						exact
+						exact={true}
 						to="/location"
 						activeClassName="active"
 						className="navigation__item"
