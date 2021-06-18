@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Banner10 from "../../../../assets/images/banner10.jpg";
 import Carosel from "./../common/carosel/carosel";
 import Product from "./../common/product/product";
 import { useLocation } from "react-router-dom";
