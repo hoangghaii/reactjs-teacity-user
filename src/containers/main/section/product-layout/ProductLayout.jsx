@@ -26,8 +26,6 @@ function ProductLayout(props) {
 		process.env.PUBLIC_URL +
 		`/assets/images/banner${Math.floor(Math.random() * 12) + 1}.jpg`;
 
-	console.log(bannerRandom);
-
 	if (bannerList.length < 4) bannerList = [...bannerList, bannerRandom];
 
 	return (
