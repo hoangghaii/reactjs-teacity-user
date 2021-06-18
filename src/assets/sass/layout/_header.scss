@@ -4,13 +4,16 @@
 	justify-content: space-between;
 
 	background: linear-gradient(to top right, #fdffff, #f4f6ff);
-	box-shadow: $shadow;
 	padding: 2rem 3rem;
 
-	width: calc(100% - 40rem);
 	position: fixed;
 	top: 0;
 	z-index: 9;
+	transition: all 0.25s ease-in-out;
+
+	&.scroll {
+		box-shadow: $shadow;
+	}
 }
 
 .search {
@@ -169,5 +172,30 @@
 		&:hover {
 			background-color: rgba($color-grey-light-1, 1);
 		}
+	}
+}
+
+.sidebar-mobile {
+	margin: auto 0;
+	cursor: pointer;
+	display: none;
+
+	i {
+		color: $color-font;
+		font-size: 2.2rem;
+		transition: all 0.25s ease-in-out;
+	}
+
+	i.fa-ellipsis-h {
+		font-size: 3.5rem;
+	}
+
+	&:hover i,
+	&:focus i {
+		color: $color-green;
+	}
+
+	@include respon(laptop) {
+		display: block;
 	}
 }

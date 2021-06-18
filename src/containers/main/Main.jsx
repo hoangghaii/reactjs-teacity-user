@@ -64,8 +64,8 @@ function Main(props) {
 
 	if (dataRespond.loading) {
 		content = <Loading />;
-	} else if (!dataRespond.status) {
-		content = <Route component={PageNotFound} />;
+	} else if (dataRespond.status !== 200) {
+		content = <p className="fetch-status">An error has occurred!</p>;
 	} else if (dataRespond.data) {
 		const productList = dataRespond.data;
 
@@ -122,7 +122,15 @@ function Main(props) {
 		);
 	}
 
-	return <Fragment>{content}</Fragment>;
+	// return <Fragment>{content}</Fragment>;
+	return (
+		<main className="main">
+			<Header
+			// productList={productList}
+			// productInCart={productInCart}
+			/>
+		</main>
+	);
 }
 
 Main.propTypes = {

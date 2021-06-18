@@ -4,7 +4,8 @@
 	flex-direction: column;
 	align-items: center;
 
-	background-color: rgba($color-sidebar, 0.3);
+	background-color: $color-white;
+	box-shadow: $shadow;
 	padding: 3rem 0;
 }
 

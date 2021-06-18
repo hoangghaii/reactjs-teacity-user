@@ -3,17 +3,17 @@
 // ======================== Media Desktop-First ======================= //
 
 // ==================================================================== //
-// 	 0 - 640px: Extra small devices (port-phone)
-// 	 640px - 768px: Small devices (land-phone)
-// 	 768px - 1024x: Medium devices (tablet)
-// 	 1024x - 1280px: Large devices (desktop)
-// 	 1280px - 1536px: Where our normal style apply (big desktop, laptop)
-// 	 1536px: Extra large devices (large-desktop)
+// 	 0 - 576px: Extra small devices (port-phone)
+// 	 576px - 768px: Small devices (land-phone)
+// 	 768px - 992x: Medium devices (tablet)
+// 	 992px - 1200px: Large devices (laptop)
+// 	 1200px - 1400px: X-large devices - Where our nornmal style apply (desktop)
+// 	 1400px: XX-large devices (large-desktop)
 // ==================================================================== //
 
 @mixin respon($breakpoint) {
 	@if $breakpoint == port-phone {
-		@media only screen and (max-width: 639.98px) {
+		@media only screen and (max-width: 575.98px) {
 			@content;
 		}
 	}
@@ -25,31 +25,31 @@
 	}
 
 	@if $breakpoint == only-tablet {
-		@media only screen and (min-width: 768px) and (max-width: 1023.98px) {
+		@media only screen and (min-width: 768px) and (max-width: 991.98px) {
 			@content;
 		}
 	}
 
 	@if $breakpoint == tablet {
-		@media only screen and (max-width: 1023.98px) {
+		@media only screen and (max-width: 991.98px) {
 			@content;
 		}
 	}
 
-	@if $breakpoint == only-desktop {
-		@media only screen and (min-width: 1024px) and (max-width: 1279.98px) {
+	@if $breakpoint == only-laptop {
+		@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
 			@content;
 		}
 	}
 
-	@if $breakpoint == desktop {
-		@media only screen and (max-width: 1279.98px) {
+	@if $breakpoint == laptop {
+		@media only screen and (max-width: 1199.98px) {
 			@content;
 		}
 	}
 
 	@if $breakpoint == large-desktop {
-		@media only screen and (min-width: 1536px) {
+		@media only screen and (min-width: 1400px) {
 			@content;
 		}
 	}

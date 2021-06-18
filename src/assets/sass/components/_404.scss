@@ -1,9 +1,12 @@
 /* =================== Page 404 ================== */
 .page_404 {
-	padding: 4rem 0;
 	background: $color-white;
 	text-align: center;
-	width: 100%;
+	width: calc(100% - 40rem);
+	margin-left: 10rem;
+	margin-right: 30rem;
+	height: 100vh;
+	min-height: 100vh;
 
 	img {
 		width: 100%;

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { changeStateSidebarLeft } from "../../../../store/slices/sidebarSlice";
 import categoryApi from "./../../../../apis/categoryApi";
 
 function Navigation(props) {
@@ -26,6 +28,13 @@ function Navigation(props) {
 		getAllCategories();
 	}, []);
 
+	const dispatch = useDispatch();
+
+	const onCloseSideBarLeft = () => {
+		const action = changeStateSidebarLeft(false);
+		dispatch(action);
+	};
+
 	let categoriesLink = null;
 	if (dataRes.loading) {
 		categoriesLink = null;
@@ -42,6 +51,7 @@ function Navigation(props) {
 					activeClassName="active"
 					className="navigation__item"
 					title={category.name}
+					onClick={onCloseSideBarLeft}
 				>
 					<i className={`fal ${category.icon}`} />
 				</NavLink>

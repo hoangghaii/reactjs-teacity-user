@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function PageNotFound(props) {
 	return (
-		<section className="page_404">
+		<div className="page_404">
 			<div className="page_404-container">
 				<div className="four_zero_four_bg">
 					<h1>404</h1>
@@ -23,7 +23,7 @@ function PageNotFound(props) {
 					</Link>
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 }
 

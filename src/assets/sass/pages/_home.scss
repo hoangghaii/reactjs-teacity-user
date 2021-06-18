@@ -14,6 +14,16 @@
 	top: 0;
 	left: 0;
 	height: 100vh;
+
+	@include respon(laptop) {
+		left: -10rem;
+		transition: all 0.35s ease-in-out;
+		z-index: 999;
+
+		&.active {
+			left: 0;
+		}
+	}
 }
 
 .sidebar-right {
@@ -23,6 +33,16 @@
 	top: 0;
 	right: 0;
 	height: 100vh;
+
+	@include respon(laptop) {
+		right: -30rem;
+		transition: all 0.35s ease-in-out;
+		z-index: 999;
+
+		&.active {
+			right: 0;
+		}
+	}
 }
 
 .main {
@@ -38,6 +58,20 @@
 		rgba(#cfd9df, 0.05),
 		rgba(#e2ebf0, 0.2)
 	);
+
+	@include respon(laptop) {
+		width: 100%;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.header {
+	width: calc(100% - 40rem);
+
+	@include respon(laptop) {
+		width: 100%;
+	}
 }
 
 section {
