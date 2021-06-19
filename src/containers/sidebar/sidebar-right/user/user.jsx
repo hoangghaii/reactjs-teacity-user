@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import SocialButton from "../../../../hoc/social-button/social-button";
+import SocialButton from "../../../../components/social-button/social-button";
 import StorageKey from "../../../../constants/storage-keys";
 import UserAvatar from "../../../../assets/images/woman.png";
 

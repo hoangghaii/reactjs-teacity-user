@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://4b524f2f30e8.ngrok.io";
+const baseUrl = "http://127.0.0.1:8000";
 
 const axiosClient = axios.create({
 	baseURL: baseUrl,

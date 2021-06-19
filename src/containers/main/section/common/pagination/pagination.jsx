@@ -1,13 +1,9 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 const LEFT_PAGE = "LEFT";
 const RIGHT_PAGE = "RIGHT";
 
-/**
- * Helper method for creating a range of numbers
- * range(1, 5) => [1, 2, 3, 4, 5]
- */
 const range = (from, to, step = 1) => {
 	let i = from;
 	const range = [];
@@ -20,71 +16,70 @@ const range = (from, to, step = 1) => {
 	return range;
 };
 
-class Pagination extends Component {
-	constructor(props) {
-		super(props);
-		const {
-			totalRecords = null,
-			pageLimit = 30,
-			pageNeighbours = 1,
-		} = props;
+function Pagination(props) {
+	const {
+		allRecords,
+		totalRecords,
+		pageLimit,
+		pageNeighbours,
+		onPageChanged,
+	} = props;
 
-		this.pageLimit = typeof pageLimit === "number" ? pageLimit : 30;
-		this.totalRecords = typeof totalRecords === "number" ? totalRecords : 0;
+	const [totalPages, setTotalPages] = useState();
+	useEffect(() => {
+		setTotalPages(Math.ceil(totalRecords / pageLimit));
+	}, [pageLimit, totalRecords]);
 
-		// pageNeighbours can be: 0, 1 or 2
-		this.pageNeighbours =
-			typeof pageNeighbours === "number"
-				? Math.max(0, Math.min(pageNeighbours, 2))
-				: 0;
+	const [currentPage, setCurrentPage] = useState(1);
 
-		this.totalPages = Math.ceil(this.totalRecords / this.pageLimit);
+	const gotoPage = (page) => {
+		const _currentPage = Math.max(0, Math.min(page, totalPages));
+		const _offset = (_currentPage - 1) * pageLimit;
 
-		this.state = { currentPage: 1 };
-	}
-
-	componentDidMount() {
-		this.gotoPage(1);
-	}
-
-	gotoPage = (page) => {
-		const { onPageChanged = (f) => f } = this.props;
-		const currentPage = Math.max(0, Math.min(page, this.totalPages));
 		const paginationData = {
-			currentPage,
-			totalPages: this.totalPages,
-			pageLimit: this.pageLimit,
-			totalRecords: this.totalRecords,
+			_currentPage,
+			totalPages: totalPages,
+			pageLimit: pageLimit,
+			totalRecords: totalRecords,
+			_offset: _offset,
+			_currentRecord: allRecords.slice(_offset, _offset + pageLimit),
 		};
 
-		this.setState({ currentPage }, () => onPageChanged(paginationData));
+		onPageChanged(paginationData);
+		setCurrentPage(_currentPage);
 	};
 
-	handleClick = (page) => (evt) => {
-		evt.preventDefault();
-		this.gotoPage(page);
+	useEffect(() => {
+		const _currentPage = Math.max(0, Math.min(1, totalPages));
+		const _offset = (_currentPage - 1) * pageLimit;
+
+		const paginationData = {
+			_currentPage,
+			totalPages: totalPages,
+			pageLimit: pageLimit,
+			totalRecords: totalRecords,
+			_offset: _offset,
+			_currentRecord: allRecords.slice(_offset, _offset + pageLimit),
+		};
+
+		onPageChanged(paginationData);
+		setCurrentPage(_currentPage);
+	}, [allRecords, pageLimit, totalPages, totalRecords]);
+
+	const handleClick = (page) => {
+		gotoPage(page);
 	};
 
-	handleMoveLeft = (evt) => {
-		evt.preventDefault();
-		this.gotoPage(this.state.currentPage - this.pageNeighbours * 2 - 1);
+	const handleMoveLeft = () => {
+		gotoPage(currentPage - pageNeighbours * 2 - 1);
 	};
 
-	handleMoveRight = (evt) => {
-		evt.preventDefault();
-		this.gotoPage(this.state.currentPage + this.pageNeighbours * 2 + 1);
+	const handleMoveRight = () => {
+		gotoPage(currentPage + pageNeighbours * 2 + 1);
 	};
 
-	fetchPageNumbers = () => {
-		const totalPages = this.totalPages;
-		const currentPage = this.state.currentPage;
-		const pageNeighbours = this.pageNeighbours;
-
-		/**
-		 * totalNumbers: the total page numbers to show on the control
-		 * totalBlocks: totalNumbers + 2 to cover for the left(<) and right(>) controls
-		 */
-		const totalNumbers = this.pageNeighbours * 2 + 3;
+	const fetchPageNumbers = () => {
+		const totalNumbers = pageNeighbours * 2 + 3;
 		const totalBlocks = totalNumbers + 2;
 
 		if (totalPages > totalBlocks) {
@@ -95,17 +90,11 @@ class Pagination extends Component {
 			);
 			let pages = range(startPage, endPage);
 
-			/**
-			 * hasLeftSpill: has hidden pages to the left
-			 * hasRightSpill: has hidden pages to the right
-			 * spillOffset: number of hidden pages either to the left or to the right
-			 */
 			const hasLeftSpill = startPage > 2;
 			const hasRightSpill = totalPages - endPage > 1;
 			const spillOffset = totalNumbers - (pages.length + 1);
 
 			switch (true) {
-				// handle: (1) < {5 6} [7] {8 9} (10)
 				case hasLeftSpill && !hasRightSpill: {
 					const extraPages = range(
 						startPage - spillOffset,
@@ -115,7 +104,6 @@ class Pagination extends Component {
 					break;
 				}
 
-				// handle: (1) {2 3} [4] {5 6} > (10)
 				case !hasLeftSpill && hasRightSpill: {
 					const extraPages = range(
 						endPage + 1,
@@ -125,7 +113,6 @@ class Pagination extends Component {
 					break;
 				}
 
-				// handle: (1) < {4 5} [6] {7 8} > (10)
 				case hasLeftSpill && hasRightSpill:
 				default: {
 					pages = [LEFT_PAGE, ...pages, RIGHT_PAGE];
@@ -139,41 +126,57 @@ class Pagination extends Component {
 		return range(1, totalPages);
 	};
 
-	render() {
-		if (!this.totalRecords || this.totalPages === 1) return null;
+	let contentRendered = null;
+	if (!totalRecords || totalPages === 1) contentRendered = null;
+	else {
+		const pages = fetchPageNumbers();
 
-		const { currentPage } = this.state;
-		const pages = this.fetchPageNumbers();
-
-		return (
+		contentRendered = (
 			<div className="pagination">
-				<div className="pagination__mobile">
-					<span
-						aria-label="Previous"
-						onClick={this.handleMoveLeft}
-						className="pagination__item pagination__item--left"
-					>
-						Previous
-					</span>
-					<span
-						aria-label="Next"
-						onClick={this.handleMoveRight}
-						className="pagination__item pagination__item--right"
-					>
-						Next
-					</span>
-				</div>
+				{/*---- On Mobile ----*/}
+				{/* <div className="pagination__mobile">
+          <span
+            aria-label="Previous"
+            onClick={handleMoveLeft}
+            className="pagination__item pagination__item--left"
+          >
+            Previous
+          </span>
+          <span
+            aria-label="Next"
+            onClick={handleMoveRight}
+            className="pagination__item pagination__item--right"
+          >
+            Next
+          </span>
+        </div> */}
+
 				<div className="pagination__desktop">
 					<div>
 						<p className="pagination__info">
 							Showing
-							<span className="text-bold text-medium"> 1 </span>
-							to
-							<span className="text-bold text-medium"> 10 </span>
-							of
-							<span className="text-bold text-medium">
+							<span
+								className="text-bold text-medium"
+								style={{ fontSize: "15px" }}
+							>
 								{" "}
-								{this.totalRecords}{" "}
+								1{" "}
+							</span>
+							to
+							<span
+								className="text-bold text-medium"
+								style={{ fontSize: "15px" }}
+							>
+								{" "}
+								10{" "}
+							</span>
+							of
+							<span
+								className="text-bold text-medium"
+								style={{ fontSize: "15px" }}
+							>
+								{" "}
+								{totalRecords}{" "}
 							</span>
 							results
 						</p>
@@ -187,10 +190,10 @@ class Pagination extends Component {
 									<span
 										key={index}
 										aria-label="Previous"
-										onClick={this.handleMoveLeft}
+										onClick={handleMoveLeft}
 										className="pagination__item pagination__item--left"
 									>
-										<i className="fal fa-angle-left icon-arrow icon-arrow__left"></i>
+										<i className="fas fa-chevron-left icon-arrow icon-arrow__left"></i>
 									</span>
 								);
 
@@ -199,17 +202,17 @@ class Pagination extends Component {
 									<span
 										key={index}
 										aria-label="Next"
-										onClick={this.handleMoveRight}
+										onClick={handleMoveRight}
 										className="pagination__item pagination__item--right"
 									>
-										<i className="fal fa-angle-right icon-arrow icon-arrow__right"></i>
+										<i className="fas fa-chevron-right icon-arrow icon-arrow__right"></i>
 									</span>
 								);
 
 							return (
 								<span
 									key={index}
-									onClick={this.handleClick(page)}
+									onClick={() => handleClick(page)}
 									className={`pagination__item${
 										currentPage === page
 											? " pagination__item--current"
@@ -225,13 +228,24 @@ class Pagination extends Component {
 			</div>
 		);
 	}
+
+	return <Fragment>{contentRendered}</Fragment>;
 }
 
 Pagination.propTypes = {
-	totalRecords: PropTypes.number.isRequired,
+	allRecords: PropTypes.array,
+	totalRecords: PropTypes.number,
 	pageLimit: PropTypes.number,
 	pageNeighbours: PropTypes.number,
 	onPageChanged: PropTypes.func,
+};
+
+Pagination.defaultProps = {
+	allRecords: [],
+	totalRecords: 0,
+	pageLimit: 10,
+	pageNeighbours: 1,
+	onPageChanged: null,
 };
 
 export default Pagination;

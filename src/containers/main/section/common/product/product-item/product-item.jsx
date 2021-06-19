@@ -9,7 +9,13 @@ function ProductItem(props) {
 
 	const dispatch = useDispatch();
 
-	let sizeProduct = "S";
+	const sizeList = detailProduct.size
+		.slice(0, -1)
+		.split(",")
+		.sort()
+		.reverse();
+
+	let sizeProduct = sizeList[0];
 
 	const handleChooseSize = (size) => {
 		sizeProduct = size;
@@ -36,7 +42,7 @@ function ProductItem(props) {
 			</div>
 			<div className="product__card--back">
 				<span className="product__heading"> {detailProduct.name} </span>
-				<p className="product__desc">{detailProduct.desc}</p>
+				<p className="product__desc">{detailProduct.description}</p>
 				<div className="product__detail">
 					<span className="product__price">
 						Price: <b>{formatCurrency(detailProduct.price)}</b>
@@ -44,54 +50,25 @@ function ProductItem(props) {
 
 					<div className="product__cta">
 						<div className="product__size">
-							<label
-								htmlFor={detailProduct.id + "sizeS"}
-								className="product__size-item"
-								onClick={() => {
-									handleChooseSize("S");
-								}}
-							>
-								<input
-									type="radio"
-									id={detailProduct.id + "sizeS"}
-									name={detailProduct.id + "size"}
-									defaultValue="S"
-									defaultChecked
-								/>
-								<span>S</span>
-							</label>
-
-							<label
-								htmlFor={detailProduct.id + "sizeM"}
-								className="product__size-item"
-								onClick={() => {
-									handleChooseSize("M");
-								}}
-							>
-								<input
-									type="radio"
-									id={detailProduct.id + "sizeM"}
-									name={detailProduct.id + "size"}
-									defaultValue="M"
-								/>
-								<span>M</span>
-							</label>
-
-							<label
-								htmlFor={detailProduct.id + "sizeL"}
-								className="product__size-item"
-								onClick={() => {
-									handleChooseSize("L");
-								}}
-							>
-								<input
-									type="radio"
-									id={detailProduct.id + "sizeL"}
-									name={detailProduct.id + "size"}
-									defaultValue="L"
-								/>
-								<span>L</span>
-							</label>
+							{sizeList.map((size, index) => (
+								<label
+									key={index}
+									htmlFor={detailProduct.id + size}
+									className="product__size-item"
+									onClick={() => {
+										handleChooseSize(size);
+									}}
+								>
+									<input
+										type="radio"
+										id={detailProduct.id + size}
+										name={detailProduct.id + "size"}
+										defaultValue={size}
+										defaultChecked={size === sizeProduct}
+									/>
+									<span>{size}</span>
+								</label>
+							))}
 						</div>
 
 						<span className="btn-add" onClick={handleAddCart}>

@@ -160,6 +160,18 @@
 			}
 		}
 
+		&__data {
+			display: flex;
+			align-items: center;
+		}
+
+		&__size {
+			color: $color-font;
+			font-size: 1.6rem;
+			font-weight: 600;
+			margin-right: 1rem;
+		}
+
 		&__quantity-box {
 			color: $color-font;
 		}

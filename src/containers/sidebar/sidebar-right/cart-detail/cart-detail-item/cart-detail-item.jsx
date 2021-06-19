@@ -12,7 +12,7 @@ import { formatCurrency } from "../../../../../common/common";
 
 function CartDetailItem(props) {
 	const { detailProduct, productInCart } = props;
-
+	console.log(detailProduct);
 	const dispatch = useDispatch();
 
 	const existingProductIndex = productInCart.findIndex(
@@ -76,12 +76,17 @@ function CartDetailItem(props) {
 				</div>
 				<div className="cart-detail__content">
 					<h5 className="heading-5">{detailProduct.name}</h5>
-					<span className="cart-detail__quantity-box">
-						<span className="cart-detail__small-bold"> x </span>
-						<span className="cart-detail__quantity">
-							{detailProduct.quantity}
+					<div className="cart-detail__data">
+						<span className="cart-detail__size">
+							{detailProduct.size}
 						</span>
-					</span>
+						<span className="cart-detail__quantity-box">
+							<span className="cart-detail__small-bold"> x </span>
+							<span className="cart-detail__quantity">
+								{detailProduct.quantity}
+							</span>
+						</span>
+					</div>
 				</div>
 				<div className="cart-detail__total-box">
 					<div className="cart-detail__total">

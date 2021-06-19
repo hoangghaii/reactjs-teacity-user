@@ -12,17 +12,32 @@ function HomeContent(props) {
 		);
 	};
 
-	const listBestSeller = productList.filter(
-		(product) => product.type === "Delivered"
+	const getRandom = () => {
+		return Math.floor(Math.random() * productList.length);
+	};
+
+	const randomArray = [
+		getRandom(),
+		getRandom(),
+		getRandom(),
+		getRandom(),
+		getRandom(),
+		getRandom(),
+		getRandom(),
+		getRandom(),
+	];
+
+	const listWannaTry = [];
+
+	randomArray.map((randomNumber) =>
+		listWannaTry.push(productList[randomNumber])
 	);
 
-	const listMustTry = productList.filter(
-		(product) => product.type === "Shipped"
-	);
-
-	const listNew = productList.filter(
-		(product) => product.type === "At Warehouse"
-	);
+	const listNew = productList
+		.sort((a, b) => {
+			return new Date(b.updated_at) - new Date(a.updated_at);
+		})
+		.slice(0, 8);
 
 	return (
 		<Tabs>
@@ -33,7 +48,7 @@ function HomeContent(props) {
 						className="section-home__category--item"
 						selectedClassName="active"
 					>
-						Best Seller
+						Wanna Try
 					</Tab>
 					<Tab
 						className="section-home__category--item"
@@ -41,16 +56,9 @@ function HomeContent(props) {
 					>
 						New
 					</Tab>
-					<Tab
-						className="section-home__category--item"
-						selectedClassName="active"
-					>
-						Must try
-					</Tab>
 				</TabList>
 
-				<TabPanel>{RenderProductList(listBestSeller)}</TabPanel>
-				<TabPanel>{RenderProductList(listMustTry)}</TabPanel>
+				<TabPanel>{RenderProductList(listWannaTry)}</TabPanel>
 				<TabPanel>{RenderProductList(listNew)}</TabPanel>
 			</div>
 		</Tabs>

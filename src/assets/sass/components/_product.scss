@@ -135,7 +135,7 @@
 		width: 55%;
 		color: $color-font;
 		display: flex;
-		justify-content: space-between;
+		justify-content: flex-start;
 		align-items: center;
 
 		&-item {
@@ -150,6 +150,10 @@
 			position: relative;
 
 			cursor: pointer;
+
+			&:not(:last-child) {
+				margin-right: 1rem;
+			}
 
 			& input[type="radio"] {
 				position: absolute;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route } from "react-router";
+import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import StorageKey from "../../constants/storage-keys";
 
@@ -11,13 +12,13 @@ function PrivateRoute({ component: Component, ...rest }) {
 
 	return (
 		<Route
-			exact={true}
+			exact
 			{...rest}
 			render={(props) =>
 				isLoggedIn ? (
 					<Component {...props} />
 				) : (
-					toast.error(
+					(toast.error(
 						<div className="toast-content">
 							<p>
 								<i className="fad fa-do-not-enter toast-icon toast-icon--error"></i>
@@ -26,7 +27,15 @@ function PrivateRoute({ component: Component, ...rest }) {
 								</span>
 							</p>
 						</div>
-					)
+					),
+					(
+						<Redirect
+							to={{
+								pathname: "/",
+								state: { from: props.location },
+							}}
+						/>
+					))
 				)
 			}
 		/>

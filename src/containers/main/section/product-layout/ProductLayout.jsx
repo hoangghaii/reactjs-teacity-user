@@ -18,15 +18,16 @@ function ProductLayout(props) {
 		(product) => product.category_id === currentCategory[0].id
 	);
 
-	let bannerList = [];
+	const banners = [];
 
-	listProduct.map((product) => bannerList.push(product.image));
+	listProduct.map((product) => banners.push(product.image));
 
 	const bannerRandom =
 		process.env.PUBLIC_URL +
 		`/assets/images/banner${Math.floor(Math.random() * 12) + 1}.jpg`;
 
-	if (bannerList.length < 4) bannerList = [...bannerList, bannerRandom];
+	const bannerList =
+		banners.length < 4 ? [...banners, bannerRandom] : banners.slice(0, 4);
 
 	return (
 		<section>

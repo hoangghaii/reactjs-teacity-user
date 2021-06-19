@@ -1,28 +1,13 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Pagination from "../pagination/pagination";
+import usePagination from "./../../../../../hoc/usePagination";
 import ProductItems from "./product-item/product-item";
 
 function Product(props) {
 	const { productList, productInCart } = props;
 
-	const [allRecord, setAllRecord] = useState([]);
-	useEffect(() => {
-		setAllRecord(productList);
-	}, [productList]);
-
-	const [currentRecord, setCurrentRecord] = useState([]);
-
-	const onPageChanged = (data) => {
-		const { currentPage, pageLimit } = data;
-
-		const offset = (currentPage - 1) * pageLimit;
-		const currentRecord = allRecord.slice(offset, offset + pageLimit);
-
-		setCurrentRecord(currentRecord);
-	};
-
-	const totalRecords = allRecord.length;
+	const { currentRecord, onPageChanged } = usePagination();
 
 	return (
 		<div className="product">
@@ -36,11 +21,12 @@ function Product(props) {
 				))}
 			</div>
 
-			{totalRecords === 0 ? null : (
+			{!productList ? null : (
 				<Pagination
-					totalRecords={totalRecords}
-					pageLimit={6}
+					allRecords={productList}
+					totalRecords={productList.length}
 					pageNeighbours={1}
+					pageLimit={9}
 					onPageChanged={onPageChanged}
 				/>
 			)}

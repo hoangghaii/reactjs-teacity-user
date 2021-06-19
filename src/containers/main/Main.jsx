@@ -122,15 +122,7 @@ function Main(props) {
 		);
 	}
 
-	// return <Fragment>{content}</Fragment>;
-	return (
-		<main className="main">
-			<Header
-			// productList={productList}
-			// productInCart={productInCart}
-			/>
-		</main>
-	);
+	return <Fragment>{content}</Fragment>;
 }
 
 Main.propTypes = {

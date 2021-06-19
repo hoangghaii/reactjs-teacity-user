@@ -51,12 +51,6 @@
 			border-radius: 0 0.6rem 0.6rem 0;
 		}
 
-		&--left {
-		}
-
-		&--right {
-		}
-
 		&--current {
 			font-weight: 600;
 			color: $color-primary;
@@ -70,6 +64,7 @@
 
 	&__info {
 		font-size: 1.4rem;
+		color: $color-font;
 	}
 }
 
