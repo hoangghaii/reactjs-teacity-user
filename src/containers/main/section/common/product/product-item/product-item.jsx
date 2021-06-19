@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../../../../common/addToCart";
 import { formatCurrency } from "../../../../../../common/common";
@@ -15,14 +15,28 @@ function ProductItem(props) {
 		.sort()
 		.reverse();
 
-	let sizeProduct = sizeList[0];
+	let productSize = sizeList[0];
+	const [productPrice, setProductPrice] = useState(detailProduct.price);
 
 	const handleChooseSize = (size) => {
-		sizeProduct = size;
+		productSize = size;
+		if (size === "S") setProductPrice(detailProduct.price);
+		else if (size === "M")
+			setProductPrice(
+				Math.round(detailProduct.price + detailProduct.price * 0.25)
+			);
+		else if (size === "L")
+			setProductPrice(
+				Math.round(detailProduct.price + detailProduct.price * 0.5)
+			);
 	};
 
 	const handleAddCart = () => {
-		const product = { ...detailProduct, size: sizeProduct };
+		const product = {
+			...detailProduct,
+			size: productSize,
+			price: productPrice,
+		};
 		addToCart(dispatch, productInCart, product);
 	};
 
@@ -45,7 +59,7 @@ function ProductItem(props) {
 				<p className="product__desc">{detailProduct.description}</p>
 				<div className="product__detail">
 					<span className="product__price">
-						Price: <b>{formatCurrency(detailProduct.price)}</b>
+						Price: <b>{formatCurrency(productPrice)}</b>
 					</span>
 
 					<div className="product__cta">
@@ -64,7 +78,7 @@ function ProductItem(props) {
 										id={detailProduct.id + size}
 										name={detailProduct.id + "size"}
 										defaultValue={size}
-										defaultChecked={size === sizeProduct}
+										defaultChecked={size === productSize}
 									/>
 									<span>{size}</span>
 								</label>
