@@ -59,6 +59,8 @@ function UserForm(props) {
 		await onSubmitForm(data);
 	};
 
+	const [submit, setSubmit] = useState(false);
+
 	return (
 		<form className="form" onSubmit={handleSubmit(onSubmit)}>
 			<InputField
@@ -68,6 +70,7 @@ function UserForm(props) {
 				refInput={register("userName")}
 				isError={errors}
 				defaultValues={userInfo.name || ""}
+				submit={submit}
 			/>
 
 			<InputField
@@ -77,6 +80,7 @@ function UserForm(props) {
 				refInput={register("userMail")}
 				isError={errors}
 				defaultValues={userInfo.email || ""}
+				submit={submit}
 			/>
 
 			<InputField
@@ -86,6 +90,7 @@ function UserForm(props) {
 				refInput={register("userPhone")}
 				isError={errors}
 				defaultValues=""
+				submit={submit}
 			/>
 
 			<InputField
@@ -95,6 +100,7 @@ function UserForm(props) {
 				refInput={register("userAddress")}
 				isError={errors}
 				defaultValues=""
+				submit={submit}
 			/>
 
 			<div className="payment__detail mt-medium">
@@ -131,6 +137,7 @@ function UserForm(props) {
 				className="btn form__submit"
 				type="submit"
 				disabled={isSubmitting}
+				onClick={() => setSubmit(true)}
 			>
 				Pay {formatCurrency(subTotal + vat)}
 			</button>

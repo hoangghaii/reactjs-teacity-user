@@ -6,6 +6,10 @@
 		margin-top: 0.5rem;
 	}
 
+	&__input-wrapper {
+		position: relative;
+	}
+
 	&__input {
 		color: $color-font;
 		font-size: 1.3rem;
@@ -16,7 +20,9 @@
 		border-radius: 0.8rem;
 		background-color: $color-white;
 
-		border: 0.2rem solid rgba($color-primary-light, 0.7);
+		border: 0.2rem solid;
+		border-color: rgba($color-primary-light, 0.7);
+
 		width: 100%;
 		display: block;
 
@@ -24,12 +30,7 @@
 
 		&:focus {
 			outline: none;
-			border: 0.2rem solid rgba($color-primary-light, 0.7);
-		}
-
-		&--error,
-		&:focus:invalid {
-			border-color: $color-red;
+			border-color: rgba($color-primary-light, 0.7);
 		}
 
 		&::-webkit-input-placeholder {
@@ -37,7 +38,32 @@
 		}
 
 		&:placeholder-shown {
-			border: 0.2rem solid rgba($color-grey-light-4, 0.5);
+			border-color: rgba($color-grey-light-4, 0.5);
+		}
+
+		&--unvalid,
+		&:focus:invalid {
+			border-color: $color-red !important;
+		}
+
+		&--valid {
+			border-color: $color-valid !important;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		top: 50%;
+		right: 3%;
+		transform: translateY(-50%);
+		font-weight: 500;
+
+		&--valid {
+			color: $color-valid;
+		}
+
+		&--unvalid {
+			color: $color-red;
 		}
 	}
 
