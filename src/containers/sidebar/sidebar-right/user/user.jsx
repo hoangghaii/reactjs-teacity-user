@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import FacebookLogin from "react-facebook-login";
 import { toast } from "react-toastify";
-import SocialButton from "../../../../components/social-button/social-button";
-import StorageKey from "../../../../constants/storage-keys";
 import UserAvatar from "../../../../assets/images/woman.png";
+import StorageKey from "../../../../constants/storage-keys";
 
 function User(props) {
 	const facebookAppId = process.env.REACT_APP_FACEBOOK_APP_ID;
@@ -11,17 +11,22 @@ function User(props) {
 		JSON.parse(localStorage.getItem(StorageKey.USER)) || null
 	);
 
-	const handleLoginSuccess = (res) => {
-		console.log(res);
-		setUserData(res._profile);
+	const onLoginSuccess = (response) => {
+		console.log(response);
+		const { accessToken, email, userID, name, picture } = response;
 
-		localStorage.removeItem("fblst_889966328526270");
-		localStorage.setItem(StorageKey.USER_TOKEN, res._token.accessToken);
-		localStorage.setItem(StorageKey.USER, JSON.stringify(res._profile));
+		setUserData({ email, userID, name, picture });
+
+		localStorage.setItem(StorageKey.USER_TOKEN, accessToken);
+		localStorage.setItem(
+			StorageKey.USER,
+			JSON.stringify({ email, userID, name, picture })
+		);
 	};
 
-	const handleLoginFailure = (err) => {
-		console.log(err);
+	const onLoginFailure = (response) => {
+		console.log(response);
+
 		toast.error(
 			<div className="toast-content">
 				<p>
@@ -34,17 +39,11 @@ function User(props) {
 		);
 	};
 
-	const handleLogoutSuccess = () => {
-		setUserData();
-	};
-
-	const handleLogoutFailure = (error) => {
-		console.log(error);
-	};
-
 	const doLogOut = () => {
 		if (userData) {
 			setUserData();
+
+			window.FB.logout();
 
 			localStorage.removeItem(StorageKey.USER);
 			localStorage.removeItem(StorageKey.USER_TOKEN);
@@ -56,7 +55,7 @@ function User(props) {
 			<div className="user-box">
 				<div className="user__icon-box">
 					<img
-						src={userData ? userData.profilePicURL : UserAvatar}
+						src={userData ? userData.picture.data.url : UserAvatar}
 						alt="User Icon"
 						title="User Icon"
 						className="user__icon"
@@ -73,17 +72,16 @@ function User(props) {
 							Logout
 						</span>
 					) : (
-						<SocialButton
-							provider="facebook"
+						<FacebookLogin
 							appId={facebookAppId}
-							key={"facebook"}
-							onLoginSuccess={handleLoginSuccess}
-							onLoginFailure={handleLoginFailure}
-							onLogoutSuccess={handleLogoutSuccess}
-							onLogoutFailure={handleLogoutFailure}
-						>
-							Login
-						</SocialButton>
+							autoLoad
+							callback={onLoginSuccess}
+							onFailure={onLoginFailure}
+							cssClass="btn-logInOut"
+							fields="name,email,picture"
+							scope="user_hometown"
+							textButton="Login with facebook"
+						/>
 					)}
 				</div>
 			</div>

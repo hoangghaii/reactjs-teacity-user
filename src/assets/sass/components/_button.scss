@@ -186,6 +186,8 @@
 
 	&-logInOut {
 		display: inline-block;
+		border: none;
+		background-color: transparent;
 		width: fit-content;
 		color: $color-font;
 		font-size: 1.3rem;
@@ -194,6 +196,12 @@
 		cursor: pointer;
 		position: relative;
 		transition: all 0.25s;
+		line-height: 1.5;
+
+		&:focus,
+		&:active {
+			outline: none;
+		}
 
 		&::after {
 			content: "";

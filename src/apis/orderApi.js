@@ -1,20 +1,20 @@
 import axiosClient from "./axiosClient";
 
 const orderApi = {
-	async getAll() {
-		const url = "/api/product";
+	async create(dataCreate) {
+		const url = "/api/order";
+
+		const data = {
+			listProduct: dataCreate.listProduct,
+			total_price: dataCreate.totalPrice,
+			address: dataCreate.userAddress,
+			name: dataCreate.userName,
+			phone: dataCreate.userPhone,
+			user_id: dataCreate.userId,
+		};
 
 		try {
-			return await axiosClient.get(url);
-		} catch (error) {
-			return error;
-		}
-	},
-
-	async get(id) {
-		const url = `/${id}`;
-		try {
-			return await axiosClient.get(url);
+			return await axiosClient.post(url, data);
 		} catch (error) {
 			return error;
 		}

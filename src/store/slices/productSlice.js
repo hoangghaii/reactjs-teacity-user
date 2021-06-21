@@ -30,8 +30,13 @@ const productSlice = createSlice({
 
 			return state.filter((item) => item !== state[index]);
 		},
+
+		clearCart(state) {
+			state = [];
+		},
 	},
 });
 
-export const { addCart, updateCart, removeFromCart } = productSlice.actions;
+export const { addCart, updateCart, removeFromCart, clearCart } =
+	productSlice.actions;
 export default productSlice.reducer;

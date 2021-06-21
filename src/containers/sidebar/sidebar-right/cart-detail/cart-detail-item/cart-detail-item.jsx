@@ -12,7 +12,7 @@ import { formatCurrency } from "../../../../../common/common";
 
 function CartDetailItem(props) {
 	const { detailProduct, productInCart } = props;
-	console.log(detailProduct);
+
 	const dispatch = useDispatch();
 
 	const existingProductIndex = productInCart.findIndex(
