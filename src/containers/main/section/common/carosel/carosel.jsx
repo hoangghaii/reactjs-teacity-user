@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
+import WithScrollReveal from "../../../../../hoc/WithScrollReveal";
 
 function Carosel({ bannerList }) {
 	return (
 		<div className="carosel__container">
 			{bannerList.map((item, index) => (
-				<div className="carosel__box" key={index}>
+				<WithScrollReveal className="carosel__box" key={index}>
 					<div className="carosel__img-box">
 						<img
 							src={item}
@@ -13,7 +14,7 @@ function Carosel({ bannerList }) {
 							className="carosel__img"
 						/>
 					</div>
-				</div>
+				</WithScrollReveal>
 			))}
 		</div>
 	);

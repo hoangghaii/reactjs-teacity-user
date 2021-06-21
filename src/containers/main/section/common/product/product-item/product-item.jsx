@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../../../../common/addToCart";
 import { formatCurrency } from "../../../../../../common/common";
+import WithScrollReveal from "./../../../../../../hoc/WithScrollReveal";
 
 function ProductItem(props) {
 	const { detailProduct, productInCart } = props;
@@ -41,7 +42,7 @@ function ProductItem(props) {
 	};
 
 	return (
-		<div className="product__item product__card">
+		<WithScrollReveal className="product__item product__card">
 			<div className="product__card--front">
 				<div className="product__img-box">
 					<img
@@ -91,7 +92,7 @@ function ProductItem(props) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</WithScrollReveal>
 	);
 }
 

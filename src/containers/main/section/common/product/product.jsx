@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import Pagination from "../pagination/pagination";
-import usePagination from "./../../../../../hoc/usePagination";
+import usePagination from "./../../../../../hook/usePagination";
 import ProductItems from "./product-item/product-item";
 
 function Product(props) {

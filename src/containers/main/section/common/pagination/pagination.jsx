@@ -64,6 +64,7 @@ function Pagination(props) {
 
 		onPageChanged(paginationData);
 		setCurrentPage(_currentPage);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [allRecords, pageLimit, totalPages, totalRecords]);
 
 	const handleClick = (page) => {
