@@ -17,6 +17,7 @@ function ProductItem(props) {
 		.reverse();
 
 	let productSize = sizeList[0];
+
 	const [productPrice, setProductPrice] = useState(detailProduct.price);
 
 	const handleChooseSize = (size) => {

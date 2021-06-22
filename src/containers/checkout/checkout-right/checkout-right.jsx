@@ -2,6 +2,7 @@ import emailjs from "emailjs-com";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { formatCurrency } from "../../../common/common";
 import { clearCart } from "../../../store/slices/productSlice";
@@ -13,10 +14,7 @@ function CheckoutRight(props) {
 	const { userInfo, productInCart, subTotal } = props;
 
 	const dispatch = useDispatch();
-
-	const [checkCallDone, setCheckCallDone] = useState(false);
-	const [isCreateSuccess, setIsCreateSuccess] = useState(false);
-	const [isSendMailSuccess, setIsSendMailSuccess] = useState(false);
+	const history = useHistory();
 
 	const [vat, setVat] = useState(0);
 
@@ -25,6 +23,14 @@ function CheckoutRight(props) {
 	}, [subTotal]);
 
 	const handleSubmit = async (dataUser) => {
+		const mailData = {
+			...dataUser,
+			detailOrder: productInCart.length,
+			subTotal: formatCurrency(subTotal),
+			vat: formatCurrency(vat),
+			total: formatCurrency(subTotal + vat),
+		};
+
 		const listProduct = [];
 		productInCart.forEach((product) =>
 			listProduct.push({ id: product.id, count: product.quantity })
@@ -37,53 +43,27 @@ function CheckoutRight(props) {
 			listProduct: listProduct,
 		};
 
-		await orderApi
-			.create(orderDetail)
-			.then((dataRes) => {
-				if (dataRes.status === 200) {
-					setCheckCallDone(true);
-					setIsCreateSuccess(true);
-				}
-			})
-			.catch((error) => {
-				setCheckCallDone(true);
-				setIsCreateSuccess(false);
-				console.log(error);
-			});
+		try {
+			const resOrder = await orderApi
+				.create(orderDetail)
+				.then((dataRes) => dataRes.status)
+				.catch((error) => error);
 
-		const mailData = {
-			...dataUser,
-			detailOrder: productInCart.length,
-			subTotal: formatCurrency(subTotal),
-			vat: formatCurrency(vat),
-			total: formatCurrency(subTotal + vat),
-		};
+			const resMail = await emailjs
+				.send(
+					process.env.REACT_APP_MAIL_SERVICE_ID,
+					"template_mbfd65d",
+					mailData,
+					process.env.REACT_APP_MAIL_USER_ID
+				)
+				.then((response) => response.status)
+				.catch((error) => error);
 
-		emailjs
-			.send(
-				process.env.REACT_APP_MAIL_SERVICE_ID,
-				"template_mbfd65d",
-				mailData,
-				process.env.REACT_APP_MAIL_USER_ID
-			)
-			.then(
-				(response) => {
-					if (response.status === 200) {
-						setCheckCallDone(true);
-						setIsSendMailSuccess(true);
-					}
-				},
-				(error) => {
-					setCheckCallDone(true);
-					setIsSendMailSuccess(false);
-					console.log(error);
-				}
-			);
-
-		if (checkCallDone) {
-			if (isCreateSuccess && isSendMailSuccess) {
-				const action = clearCart();
+			if (resOrder === 200 && resMail === 200) {
+				const action = clearCart([]);
 				dispatch(action);
+
+				history.push("/");
 
 				toast.success(
 					<div className="toast-content">
@@ -95,18 +75,18 @@ function CheckoutRight(props) {
 						</p>
 					</div>
 				);
-			} else if (!isCreateSuccess || !isSendMailSuccess) {
-				toast.error(
-					<div className="toast-content">
-						<p>
-							<i className="fad fa-do-not-enter toast-icon toast-icon--error"></i>
-							<span className="toast-text">
-								Có lỗi xảy ra, hãy kiểm tra lại thông tin
-							</span>
-						</p>
-					</div>
-				);
 			}
+		} catch (error) {
+			toast.error(
+				<div className="toast-content">
+					<p>
+						<i className="fad fa-do-not-enter toast-icon toast-icon--error"></i>
+						<span className="toast-text">
+							Có lỗi xảy ra, hãy kiểm tra lại thông tin
+						</span>
+					</p>
+				</div>
+			);
 		}
 	};
 
