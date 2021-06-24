@@ -43,7 +43,7 @@ function User(props) {
 		if (userData) {
 			setUserData();
 
-			window.FB.logout();
+			if (window.FB) window.FB.logout();
 
 			localStorage.removeItem(StorageKey.USER);
 			localStorage.removeItem(StorageKey.USER_TOKEN);

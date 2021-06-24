@@ -12,7 +12,12 @@ function Search(props) {
 	const [searchResult, setSearchResult] = useState([]);
 
 	const getSearchList = (dataList, searchText) => {
-		const dataKeys = dataList[0] && Object.keys(dataList[0]);
+		const dataKeys = Object.keys(dataList[0]).filter(
+			(key) =>
+				key.toLowerCase() === "description" ||
+				key.toLowerCase() === "name" ||
+				key.toLowerCase() === "price"
+		);
 
 		return dataList.filter((item) =>
 			dataKeys.some(
