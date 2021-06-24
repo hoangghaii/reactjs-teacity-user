@@ -12,7 +12,6 @@ function User(props) {
 	);
 
 	const onLoginSuccess = (response) => {
-		console.log(response);
 		const { accessToken, email, userID, name, picture } = response;
 
 		setUserData({ email, userID, name, picture });
