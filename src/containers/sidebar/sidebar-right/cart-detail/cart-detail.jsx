@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import { formatCurrency } from "../../../../common/common";
+import { formatCurrency } from "../../../../helper/formatCurrency";
 import CartDetailList from "./cart-detail-list/cart-detail-list";
 
 function CartDetail(props) {

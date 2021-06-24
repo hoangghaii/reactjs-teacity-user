@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../../common/addToCart";
-import { formatCurrency } from "../../../common/common";
+import { addToCart, formatCurrency } from "../../../helper";
 
 function Search(props) {
 	const { productList, productInCart } = props;

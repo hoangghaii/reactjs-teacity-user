@@ -4,11 +4,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
+import { formatCurrency } from "../../../../../helper/formatCurrency";
 import {
 	removeFromCart,
 	updateCart,
 } from "../../../../../store/slices/productSlice";
-import { formatCurrency } from "../../../../../common/common";
 
 function CartDetailItem(props) {
 	const { detailProduct, productInCart } = props;

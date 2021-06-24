@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import { formatCurrency } from "../../../common/common";
+import { formatCurrency } from "../../../helper/formatCurrency";
 import { clearCart } from "../../../store/slices/productSlice";
 import orderApi from "./../../../apis/orderApi";
 import StorageKey from "./../../../constants/storage-keys";

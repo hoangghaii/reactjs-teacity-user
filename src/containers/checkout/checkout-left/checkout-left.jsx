@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../../assets/images/logo.png";
 import CheckoutBanner from "../../../assets/images/banner7.jpg";
-import { formatCurrency } from "../../../common/common";
+import Logo from "../../../assets/images/logo.png";
+import { formatCurrency } from "../../../helper/formatCurrency";
 import CartDetailItem from "./../../sidebar/sidebar-right/cart-detail/cart-detail-item/cart-detail-item";
 
 function CheckoutLeft(props) {

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { formatCurrency } from "../../../../common/common";
+import { formatCurrency } from "../../../../helper/formatCurrency";
 import InputField from "../input-field/input-field";
 
 // RegExp phone
