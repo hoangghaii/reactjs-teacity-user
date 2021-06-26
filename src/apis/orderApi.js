@@ -2,7 +2,7 @@ import axiosClient from "./axiosClient";
 
 const orderApi = {
 	async create(dataCreate) {
-		const url = "/api/order";
+		const url = "/order";
 
 		const data = {
 			listProduct: dataCreate.listProduct,
