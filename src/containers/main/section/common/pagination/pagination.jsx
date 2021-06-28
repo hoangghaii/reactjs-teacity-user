@@ -31,6 +31,7 @@ function Pagination(props) {
 	}, [pageLimit, totalRecords]);
 
 	const [currentPage, setCurrentPage] = useState(1);
+	const [currentRecordLength, setCurrentRecordLength] = useState(pageLimit);
 
 	const gotoPage = (page) => {
 		const _currentPage = Math.max(0, Math.min(page, totalPages));
@@ -44,6 +45,10 @@ function Pagination(props) {
 			_offset: _offset,
 			_currentRecord: allRecords.slice(_offset, _offset + pageLimit),
 		};
+
+		setCurrentRecordLength(
+			allRecords.slice(_offset, _offset + pageLimit).length
+		);
 
 		onPageChanged(paginationData);
 		setCurrentPage(_currentPage);
@@ -169,7 +174,7 @@ function Pagination(props) {
 								style={{ fontSize: "15px" }}
 							>
 								{" "}
-								10{" "}
+								{currentRecordLength}{" "}
 							</span>
 							of
 							<span
