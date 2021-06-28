@@ -41,7 +41,7 @@ function Header(props) {
 				<i className="fal fa-bars" />
 			</div>
 
-			<h1 className="heading-1">Mr.GoodTea</h1>
+			<h1 className="heading-1">TeaCity</h1>
 			<Search productList={productList} productInCart={productInCart} />
 
 			<div className="sidebar-mobile" onClick={onOpenSideBarRight}>
